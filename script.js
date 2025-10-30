@@ -1,4 +1,4 @@
-// Fetch users and summarize their info
+
 function fetchUsersAndSummarize() {
   const url = "https://jsonplaceholder.typicode.com/users";
 
@@ -22,16 +22,12 @@ function fetchUsersAndSummarize() {
     })
     .catch(err => console.error("Error:", err.message));
 }
-
-// Successful fetch
 fetchUsersAndSummarize();
 
-
-// Test error handling with a wrong URL
 function testError() {
-  const wrongUrl = "https://jsonplaceholder.typicode.com/u5ers";
+  const testUrl = "https://jsonplaceholder.typicode.com/u5ers";
 
-  fetch(wrongUrl)
+  fetch(testUrl)
     .then(res => {
       if (!res.ok) throw new Error(`Network issue: ${res.status}`);
       return res.json();
@@ -40,5 +36,4 @@ function testError() {
     .catch(err => console.error("Caught error:", err.message));
 }
 
-// Error test
 testError();
