@@ -1,4 +1,3 @@
-
 function fetchUsersAndSummarize() {
   const url = "https://jsonplaceholder.typicode.com/users";
 
@@ -9,19 +8,27 @@ function fetchUsersAndSummarize() {
     })
     .then(users => {
       const result = users
-        .filter(user => user.address.city[0] === "C")
+        .filter(user => user.address.city[0].toLowerCase() === "w")
         .map(user => ({
           id: user.id,
           name: user.name,
+          city: user.address.city,
           companyName: user.company.name
         }));
 
-      result.forEach(user =>
-        console.log(`User ID ${user.id}: ${user.name} works at ${user.companyName}`)
-      );
+      if (result.length === 0) {
+        console.log("No users found with city starting with 'w'");
+      } else {
+        result.forEach(user =>
+          console.log(
+            `User ID ${user.id}: ${user.name} lives in ${user.city} and works at ${user.companyName}`
+          )
+        );
+      }
     })
     .catch(err => console.error("Error:", err.message));
 }
+
 fetchUsersAndSummarize();
 
 function testError() {
